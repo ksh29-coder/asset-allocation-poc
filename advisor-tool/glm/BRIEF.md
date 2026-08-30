@@ -22,7 +22,8 @@ which matter.
 1. What the client holds today: what it is, and what it costs them in dollars.
 2. How the portfolio has actually performed, and over what period.
 3. What it is concentrated in, and whether that should worry anyone.
-4. The current book compared against an alternative built from the same shelf.
+4. The account holds losses as well as gains. What could be done with that, and
+   what would it be worth?
 5. Where the risk actually sits — which holdings drive the volatility.
 6. The worst it has been, and how long it took to recover.
 7. What the client pays in fees over the next fifteen years if nothing changes.

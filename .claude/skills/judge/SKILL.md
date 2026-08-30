@@ -77,6 +77,24 @@ shown to a client.
 **The chain that separates the field is fees → savings → cost of switching.** A weak
 submission builds those as three unrelated panels; a strong one connects them.
 
+**Ask 4 is the harvesting ask** — *"the account holds losses as well as gains"*. Three
+positions are underwater: **JCPB −$22,000, BBRE −$13,000, JAGG −$6,000, $41,000 in
+total.** Everything needed is in `client_portfolio.csv`; nothing about it requires an
+invented number until a model puts a dollar tax figure on screen, and the brief requires
+any assumed rate to be stated and editable. Score the reasoning, not the arithmetic:
+
+- **Wash sale.** The natural replacement for JCPB is JBND (**corr 0.967**) or JAGG
+  (**0.951**). Different indices, so probably not substantially identical — but a model
+  that raises the question knows the domain, and one that calls it free money does not.
+- **BBRE has no replacement.** It is the only Real Assets fund on the shelf, so harvesting
+  it means dropping the exposure or sitting out. Surfacing that constraint is judgement.
+- **Position-level basis, no purchase dates.** Real harvesting is lot-level, and short vs
+  long term cannot be separated here. A careful submission says so; glm flagged exactly
+  this unprompted in an earlier run.
+- **The connection worth watching:** the biggest loss, JCPB, is also the dearest bond fund
+  on the shelf. Harvesting it into JAGG banks $22,000 *and* saves $893/yr. Nothing in the
+  brief points at that — a model that finds both halves in one trade has done the work.
+
 **The tension planted in the cost basis:** the cheap win and the right win are different
 trades. JCPB is the dearest bond fund on the shelf and sits on a **−$22,000 loss**, so
 swapping it to JAGG saves **$893/yr** and harvests a deduction — free. But the bigger
