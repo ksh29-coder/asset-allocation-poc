@@ -1,0 +1,17 @@
+ticker,name,asset_class,category,region,expense_ratio_pct,role
+JGRO,JPMorgan Active Growth ETF,Equity,US Large Cap Growth,US,0.44,Core equity
+JAVA,JPMorgan Active Value ETF,Equity,US Large Cap Value,US,0.44,Core equity
+JMEE,JPMorgan Small & Mid Cap Enhanced Equity ETF,Equity,US Small/Mid Cap,US,0.24,SMID exposure
+JIRE,JPMorgan International Research Enhanced Equity ETF,Equity,Developed ex-US,International Developed,0.24,Core equity
+JGLO,JPMorgan Global Select Equity ETF,Equity,Global Active Equity,Global,0.47,Core equity
+JEMA,JPMorgan ActiveBuilders Emerging Markets Equity ETF,Equity,Emerging Markets Equity,Emerging Markets,0.33,EM exposure
+BBRE,JPMorgan BetaBuilders MSCI US REIT ETF,Real Assets,US REITs,US,0.11,Real assets
+JEPI,JPMorgan Equity Premium Income ETF,Equity Income,US Covered Call Income,US,0.35,Income
+JEPQ,JPMorgan Nasdaq Equity Premium Income ETF,Equity Income,Nasdaq Covered Call Income,US,0.35,Income
+HELO,JPMorgan Hedged Equity Laddered Overlay ETF,Alternatives,Hedged Equity,US,0.50,Downside mitigation
+JPST,JPMorgan Ultra-Short Income ETF,Fixed Income,Ultra-Short Bond,US,0.18,Cash management
+JMST,JPMorgan Ultra-Short Municipal Income ETF,Fixed Income,Ultra-Short Municipal,US,0.18,Tax-aware cash
+JAGG,JPMorgan U.S. Aggregate Bond ETF,Fixed Income,US Core Bond,US,0.07,Core bond
+JCPB,JPMorgan Core Plus Bond ETF,Fixed Income,Core Plus Bond,US,0.38,Core bond
+JBND,JPMorgan Active Bond ETF,Fixed Income,Active Core Bond,US,0.25,Core bond
+JPIE,JPMorgan Income ETF,Fixed Income,Multi-Sector Income,US,0.39,Income
