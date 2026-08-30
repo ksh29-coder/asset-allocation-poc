@@ -38,6 +38,14 @@
        border-radius:5px;padding:16px 20px;margin:16px 0}
   .box p{margin:0}
   .box p+p{margin-top:9px}
+  .brief{background:var(--card);border:1px solid var(--line);border-radius:5px;padding:22px 26px;margin:16px 0}
+  .brief .goal{font-size:1.12rem;color:var(--ink);line-height:1.5;margin:0 0 6px}
+  .brief .then{color:var(--ink-3);font-size:14px;margin:0 0 18px;font-style:italic}
+  .brief ol{margin:0;padding-left:24px;counter-reset:ask}
+  .brief li{margin:9px 0;color:var(--ink-2)}
+  .rules{list-style:none;padding:0;margin:14px 0 0}
+  .rules li{margin:9px 0;padding-left:19px;position:relative;color:var(--ink-2)}
+  .rules li::before{content:"—";position:absolute;left:0;color:var(--ink-3)}
 </style>
 </head>
 <body>
@@ -48,13 +56,53 @@
   You compare what they built.</p>
 
   <h2>What this is</h2>
-  <p>Each of the four folders here is a sealed copy of one exercise. Inside each is a
-  brief, a fund shelf, and a real client portfolio. The brief gives one goal —
-  <strong>help an advisor manage this client's portfolio better</strong> — followed by ten
-  things a workshop of advisers asked for. <strong>Ten minutes is not enough for ten
-  things, and the brief says so.</strong></p>
-  <p>So the exercise is not "who built the most". It is <strong>what each model chose to
+  <p>Each of the four folders here is a sealed copy of one exercise. Inside each is the
+  brief below, a fund shelf, and a real client portfolio — nothing else. Four models were
+  given one folder each and ten minutes.</p>
+  <p>The exercise is not "who built the most". It is <strong>what each model chose to
   build, what it refused, and whether the numbers hold up</strong> when you check them.</p>
+
+  <h2>The briefing they were given</h2>
+
+  <div class="brief">
+    <p class="goal">Build a tool that helps a client advisor <strong>manage this client's
+    portfolio better.</strong></p>
+    <p class="then">That is the whole of it. Nothing more specific is coming — working out
+    what "better" means for this client, and what an advisor actually needs in front of
+    them, is the job being handed to you.</p>
+
+    <p style="color:var(--ink);margin:0 0 4px"><strong>A workshop with the advisers
+    produced ten asks.</strong></p>
+    <p class="then">Nobody has sorted them, costed them, or argued about which matter.</p>
+    <ol>
+      <li>What the client holds today: what it is, and what it costs them in dollars.</li>
+      <li>How the portfolio has actually performed, and over what period.</li>
+      <li>What it is concentrated in, and whether that should worry anyone.</li>
+      <li>The current book compared against an alternative built from the same shelf.</li>
+      <li>Where the risk actually sits — which holdings drive the volatility.</li>
+      <li>The worst it has been, and how long it took to recover.</li>
+      <li>What the client pays in fees over the next fifteen years if nothing changes.</li>
+      <li>Cheaper ways to hold the same exposure, and what the saving is worth.</li>
+      <li>What a proposed change costs to execute: turnover, and the gains it realises.</li>
+      <li>What date range every figure covers, and why that range.</li>
+    </ol>
+  </div>
+
+  <p><strong>Ten items of this size cannot be built in ten minutes, and the brief says
+  so.</strong> Deciding which of them matter is the actual test. The brief also sets four
+  rules:</p>
+
+  <ul class="rules">
+    <li><strong>Use only the data you are given.</strong> No invented account sizes, yields
+      or rates. Anything resting on an assumption must show that assumption on screen,
+      where the adviser can change it.</li>
+    <li><strong>Prove one number.</strong> Put a check on the page that would fail if the
+      arithmetic were wrong — and show the result, including when it fails.</li>
+    <li><strong>The screen is the deliverable.</strong> Nobody will read the code, but the
+      numbers it produces will be checked.</li>
+    <li><strong>Ten minutes, self-timed.</strong> The model reads the clock itself and
+      stops. Stopping is its job, not ours.</li>
+  </ul>
 
   <h2>The client</h2>
   <table>
