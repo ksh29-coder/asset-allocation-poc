@@ -7,44 +7,46 @@
 <style>
   :root{
     --paper:#f7f8f9; --card:#fff; --ink:#151b22; --ink-2:#4d5865; --ink-3:#7b8593;
-    --line:#dfe4ea; --accent:#33507e; --code-bg:#eef1f5;
+    --line:#dfe4ea; --accent:#33507e; --code-bg:#eef1f5; --warn:#8a5a00; --warn-bg:#fdf3e0;
   }
   @media (prefers-color-scheme:dark){
     :root{--paper:#0f1318;--card:#171d24;--ink:#e8edf3;--ink-2:#a9b4c1;--ink-3:#7d8895;
-          --line:#2b343e;--accent:#8fb0e0;--code-bg:#1f2831;}
+          --line:#2b343e;--accent:#8fb0e0;--code-bg:#1f2831;--warn:#e0b562;--warn-bg:#2a2113;}
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--paper);color:var(--ink);
        font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
-  main{max-width:760px;margin:0 auto;padding:52px 24px 80px}
+  main{max-width:780px;margin:0 auto;padding:52px 24px 80px}
   h1{font-size:2rem;line-height:1.15;letter-spacing:-.02em;margin:0 0 10px}
-  .sub{color:var(--ink-2);font-size:1.08rem;margin:0 0 38px;max-width:58ch}
-  h2{font-size:1.18rem;letter-spacing:-.01em;margin:38px 0 12px;padding-top:20px;border-top:1px solid var(--line)}
+  .sub{color:var(--ink-2);font-size:1.08rem;margin:0 0 36px;max-width:60ch}
+  h2{font-size:1.2rem;letter-spacing:-.01em;margin:40px 0 12px;padding-top:22px;border-top:1px solid var(--line)}
   h2:first-of-type{border-top:0;padding-top:0}
-  p,li{color:var(--ink-2);max-width:66ch}
+  h3{font-size:.95rem;margin:22px 0 8px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.07em}
+  p,li{color:var(--ink-2);max-width:68ch}
   strong{color:var(--ink)}
-  ul,ol{padding-left:22px}
-  li{margin:7px 0}
+  ul,ol{padding-left:22px} li{margin:7px 0}
   code{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:13.5px;
        background:var(--code-bg);padding:2px 6px;border-radius:3px;color:var(--ink)}
   pre{background:var(--card);border:1px solid var(--line);border-radius:5px;
       padding:15px 18px;overflow-x:auto;margin:12px 0}
-  pre code{background:none;padding:0;font-size:13px;line-height:1.7}
-  table{border-collapse:collapse;width:100%;margin:12px 0;font-size:14.5px}
-  th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line)}
-  th{color:var(--ink-3);font-size:12px;text-transform:uppercase;letter-spacing:.07em;font-weight:600}
-  td code{font-size:13px}
+  pre code{background:none;padding:0;font-size:13px;line-height:1.75}
+  table{border-collapse:collapse;width:100%;margin:12px 0;font-size:14px}
+  th,td{text-align:left;padding:8px 11px;border-bottom:1px solid var(--line)}
+  th{color:var(--ink-3);font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+  td.n{text-align:right;font-variant-numeric:tabular-nums;font-family:ui-monospace,Menlo,monospace;font-size:13px}
+  td.t{font-family:ui-monospace,Menlo,monospace;font-size:13px;color:var(--ink)}
+  .pos{color:#1c6b4a} .neg{color:#a3302a}
+  @media (prefers-color-scheme:dark){.pos{color:#6fcfa1}.neg{color:#f0918a}}
   .box{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);
        border-radius:5px;padding:16px 20px;margin:16px 0}
-  .box p{margin:0}
-  .box p+p{margin-top:9px}
+  .box p{margin:0} .box p+p{margin-top:9px}
+  .box.warn{border-left-color:var(--warn);background:var(--warn-bg)}
   .brief{background:var(--card);border:1px solid var(--line);border-radius:5px;padding:22px 26px;margin:16px 0}
-  .brief .goal{font-size:1.12rem;color:var(--ink);line-height:1.5;margin:0 0 6px}
+  .brief .goal{font-size:1.1rem;color:var(--ink);line-height:1.5;margin:0 0 6px}
   .brief .then{color:var(--ink-3);font-size:14px;margin:0 0 18px;font-style:italic}
-  .brief ol{margin:0;padding-left:24px;counter-reset:ask}
-  .brief li{margin:9px 0;color:var(--ink-2)}
+  .brief ol{margin:0;padding-left:24px} .brief li{margin:9px 0}
   .rules{list-style:none;padding:0;margin:14px 0 0}
-  .rules li{margin:9px 0;padding-left:19px;position:relative;color:var(--ink-2)}
+  .rules li{margin:10px 0;padding-left:19px;position:relative}
   .rules li::before{content:"—";position:absolute;left:0;color:var(--ink-3)}
 </style>
 </head>
@@ -52,17 +54,64 @@
 <main>
 
   <h1>The advisor tool exercise</h1>
-  <p class="sub">Four AI models get the same brief, the same client, and ten minutes each.
+  <p class="sub">Four AI models get the same data, the same brief, and ten minutes each.
   You compare what they built.</p>
 
-  <h2>What this is</h2>
-  <p>Each of the four folders here is a sealed copy of one exercise. Inside each is the
-  brief below, a fund shelf, and a real client portfolio — nothing else. Four models were
-  given one folder each and ten minutes.</p>
-  <p>The exercise is not "who built the most". It is <strong>what each model chose to
-  build, what it refused, and whether the numbers hold up</strong> when you check them.</p>
+  <p>Each of the four folders here is a sealed copy of one exercise. A model is given one
+  folder and nothing else. The exercise is not <em>who built the most</em> — it is
+  <strong>what each model chose to build, what it refused, and whether the numbers hold
+  up</strong> when you check them.</p>
 
-  <h2>The briefing they were given</h2>
+  <h2>1 · The data they are given</h2>
+  <p>Three files, and nothing else. No internet, no market feed, no benchmark.</p>
+
+  <div class="box warn">
+    <p><strong>The client is invented.</strong> The portfolio, the account size and the cost
+    basis are all made up for this exercise. The <em>funds</em> are real JPMorgan ETFs with
+    their real published fees, and the prices are real market history — but no client's data
+    appears anywhere here.</p>
+  </div>
+
+  <h3>The shelf — 16 JPMorgan ETFs</h3>
+  <p>The universe an advisor may sell from. Fees run from <strong>0.07% to 0.50%</strong>,
+  which is a seven-fold spread — enough that swapping between similar funds is a real
+  decision.</p>
+  <table>
+    <tr><th>Asset class</th><th>Funds</th><th>Fee range</th><th>Tickers</th></tr>
+    <tr><td>Equity</td><td class="n">6</td><td class="n">0.24–0.47%</td><td class="t">JGRO JAVA JMEE JIRE JGLO JEMA</td></tr>
+    <tr><td>Fixed income</td><td class="n">6</td><td class="n">0.07–0.39%</td><td class="t">JPST JMST JAGG JCPB JBND JPIE</td></tr>
+    <tr><td>Equity income</td><td class="n">2</td><td class="n">0.35%</td><td class="t">JEPI JEPQ</td></tr>
+    <tr><td>Real assets</td><td class="n">1</td><td class="n">0.11%</td><td class="t">BBRE</td></tr>
+    <tr><td>Alternatives</td><td class="n">1</td><td class="n">0.50%</td><td class="t">HELO</td></tr>
+  </table>
+
+  <h3>The client's portfolio</h3>
+  <p>A <strong>$2.4m taxable account</strong>, nine of the sixteen funds, held by a couple in
+  their mid-fifties roughly fifteen years from drawing on the money. Because it is taxable,
+  the gain column is what becomes real if a holding is sold.</p>
+  <table>
+    <tr><th>Fund</th><th>Weight</th><th>Value</th><th>Unrealised</th><th>Fee</th><th>Asset class</th></tr>
+    <tr><td class="t">JEPI</td><td class="n">20%</td><td class="n">$480,000</td><td class="n pos">+$70,000</td><td class="n">0.35%</td><td>Equity income</td></tr>
+    <tr><td class="t">JEPQ</td><td class="n">15%</td><td class="n">$360,000</td><td class="n pos">+$120,000</td><td class="n">0.35%</td><td>Equity income</td></tr>
+    <tr><td class="t">JPST</td><td class="n">15%</td><td class="n">$360,000</td><td class="n pos">+$5,000</td><td class="n">0.18%</td><td>Fixed income</td></tr>
+    <tr><td class="t">JGRO</td><td class="n">12%</td><td class="n">$288,000</td><td class="n pos">+$98,000</td><td class="n">0.44%</td><td>Equity</td></tr>
+    <tr><td class="t">JCPB</td><td class="n">12%</td><td class="n">$288,000</td><td class="n neg">−$22,000</td><td class="n">0.38%</td><td>Fixed income</td></tr>
+    <tr><td class="t">JAVA</td><td class="n">10%</td><td class="n">$240,000</td><td class="n pos">+$35,000</td><td class="n">0.44%</td><td>Equity</td></tr>
+    <tr><td class="t">BBRE</td><td class="n">8%</td><td class="n">$192,000</td><td class="n neg">−$13,000</td><td class="n">0.11%</td><td>Real assets</td></tr>
+    <tr><td class="t">JGLO</td><td class="n">5%</td><td class="n">$120,000</td><td class="n pos">+$25,000</td><td class="n">0.47%</td><td>Equity</td></tr>
+    <tr><td class="t">JAGG</td><td class="n">3%</td><td class="n">$72,000</td><td class="n neg">−$6,000</td><td class="n">0.07%</td><td>Fixed income</td></tr>
+  </table>
+  <p>Total <strong>$2,400,000</strong>, with <strong>$312,000 of unrealised gain</strong>
+  sitting inside it.</p>
+
+  <h3>Five years of prices</h3>
+  <p>17,604 daily closing prices covering <strong>27 Aug 2021 to 26 Aug 2026</strong>,
+  adjusted for distributions. One detail matters and the models are not warned about it:
+  <strong>the funds do not all have five years of history.</strong> Several launched in 2023,
+  and one stops five weeks before the rest. A five-year figure is therefore wrong for this
+  client's portfolio, and noticing that is part of the test.</p>
+
+  <h2>2 · What the models are asked to do</h2>
 
   <div class="brief">
     <p class="goal">Build a tool that helps a client advisor <strong>manage this client's
@@ -71,8 +120,8 @@
     what "better" means for this client, and what an advisor actually needs in front of
     them, is the job being handed to you.</p>
 
-    <p style="color:var(--ink);margin:0 0 4px"><strong>A workshop with the advisers
-    produced ten asks.</strong></p>
+    <p style="color:var(--ink);margin:0 0 4px"><strong>A workshop with the advisers produced
+    ten asks.</strong></p>
     <p class="then">Nobody has sorted them, costed them, or argued about which matter.</p>
     <ol>
       <li>What the client holds today: what it is, and what it costs them in dollars.</li>
@@ -89,75 +138,81 @@
   </div>
 
   <p><strong>Ten items of this size cannot be built in ten minutes, and the brief says
-  so.</strong> Deciding which of them matter is the actual test. The brief also sets four
-  rules:</p>
+  so.</strong> Choosing which of them matter is the actual test. Four rules shape the rest:</p>
 
   <ul class="rules">
     <li><strong>Use only the data you are given.</strong> No invented account sizes, yields
-      or rates. Anything resting on an assumption must show that assumption on screen,
-      where the adviser can change it.</li>
+      or rates. Anything resting on an assumption must show that assumption on screen, where
+      the adviser can change it.</li>
     <li><strong>Prove one number.</strong> Put a check on the page that would fail if the
       arithmetic were wrong — and show the result, including when it fails.</li>
     <li><strong>The screen is the deliverable.</strong> Nobody will read the code, but the
       numbers it produces will be checked.</li>
-    <li><strong>Ten minutes, self-timed.</strong> The model reads the clock itself and
-      stops. Stopping is its job, not ours.</li>
+    <li><strong>Ten minutes, self-timed.</strong> The model reads the clock itself and stops.
+      Stopping is its job, not ours.</li>
   </ul>
 
-  <h2>The client</h2>
-  <table>
-    <tr><th>Account</th><td>$2.4m, taxable</td></tr>
-    <tr><th>Holdings</th><td>9 funds, from a fixed shelf of 16</td></tr>
-    <tr><th>Unrealised gain</th><td>$312,000 — so selling has a tax cost</td></tr>
-    <tr><th>Horizon</th><td>~15 years from drawing on the money</td></tr>
-  </table>
-  <p>Everything the models show must come from the three files in <code>data/</code>.
-  They are told not to invent inputs, and to label any assumption on screen.</p>
-
-  <h2>How to run it</h2>
-  <p>Check the workspaces are provisioned — this changes nothing, it only verifies:</p>
-  <pre><code>cd advisor-tool
-./preinstall.sh --check</code></pre>
-  <p>Then start each model's tool. They can all run at once, so you can flip between tabs:</p>
-  <pre><code>cd claude-opus &amp;&amp; ./run.sh serve     # prints its URL
-cd glm         &amp;&amp; ./run.sh serve
-cd inkling     &amp;&amp; ./run.sh serve
-cd kimi3       &amp;&amp; ./run.sh serve</code></pre>
-  <p>Each workspace has its own port range: claude-opus 7600, glm 7900, inkling 7800,
-  kimi3 7700. Each also leaves a <code>SUMMARY.html</code> saying what it built and why,
-  with a link straight through to its running page — that is the quickest way in.</p>
-
-  <div class="box">
-    <p><strong>Two practical things.</strong> Plug the laptop in, or run
-    <code>caffeinate</code> — a previous session lost 37 minutes to the machine sleeping
-    mid-build. And avoid ports 5000 and 7000; macOS AirPlay holds both.</p>
-  </div>
-
-  <h2>What to look for</h2>
+  <h2>3 · What we are looking for in the results</h2>
+  <p>Not feature count. A model that builds four things it would stake its name on beats one
+  that builds nine it would not.</p>
   <ul>
-    <li><strong>Would you let an advisor take this into a client meeting on Monday?</strong>
-      That is the whole test.</li>
-    <li><strong>What did it refuse to build, and do you agree?</strong> Declining an ask can
-      be the better answer — three of four refused to compare against an invented
-      alternative, and were right to.</li>
-    <li><strong>What is this client paying?</strong> Some tools tell you in dollars, some
-      only in percentages. Only one of those answers the question a client asks.</li>
+    <li><strong>Would you let an adviser take this into a client meeting on Monday?</strong>
+      That is the whole test, and you are better placed to answer it than any engineer.</li>
+    <li><strong>What is this client paying?</strong> Some tools answer in dollars, some only
+      in percentages. Only one of those answers the question a client actually asks.</li>
+    <li><strong>What did it refuse to build, and do you agree?</strong> Declining can be the
+      better answer — ask 4 invites a model to invent an alternative portfolio the data does
+      not support, and refusing that is a mark of judgement, not a gap.</li>
+    <li><strong>Did it find the trade that matters?</strong> There are two moves in this
+      book and they are not the same one. The cheap win is obvious. The important one costs
+      real tax. A tool that shows only the first will send an adviser into the meeting
+      recommending the wrong thing.</li>
     <li><strong>Pick the most impressive number on any screen and ask where it came
       from.</strong> Not all of them can tell you.</li>
   </ul>
 
-  <h2>Running it again</h2>
-  <p>Only the setup is kept here — the brief, the data, and the installed toolchain. What
-  the models produced has been cleared, so the folders are ready for a fresh run. Give each
-  model one workspace and nothing else; the brief tells it that its folder is the entire
-  world.</p>
+  <h2>4 · How to run it</h2>
+
+  <div class="box warn">
+    <p><strong>The folders are empty of code right now.</strong> They hold the brief, the
+    data and the installed toolchain — nothing else. There is no <code>run.sh</code> until a
+    model writes one. Run the exercise first, then come back to view the results.</p>
+  </div>
+
+  <h3>The windows are already open</h3>
+  <p>Four sessions are set up and waiting, one per model, each already sitting in its own
+  folder:</p>
+  <table>
+    <tr><th>Window</th><th>Model</th><th>Folder</th><th>Ports</th></tr>
+    <tr><td>Claude Code</td><td class="t">claude-opus</td><td class="t">claude-opus/</td><td class="n">7600–7609</td></tr>
+    <tr><td>opencode</td><td class="t">kimi3</td><td class="t">kimi3/</td><td class="n">7700–7709</td></tr>
+    <tr><td>opencode</td><td class="t">inkling</td><td class="t">inkling/</td><td class="n">7800–7809</td></tr>
+    <tr><td>opencode</td><td class="t">glm</td><td class="t">glm/</td><td class="n">7900–7909</td></tr>
+  </table>
+  <p>Tell each one to read <code>BRIEF.md</code> and start. Give them nothing else — the
+  brief tells each model that its folder is the entire world. <strong>Stop any model still
+  going at ten minutes.</strong></p>
+  <p>Separate port ranges mean all four can serve at the same time, so nothing collides when
+  you come to look at them.</p>
+
+  <h3>Viewing the results</h3>
+  <p>Each model writes a <code>SUMMARY.html</code> saying what it built and why, with a link
+  straight through to its own running page. <strong>That is the quickest way in</strong> —
+  open the four summaries and click through.</p>
+  <p>If a model's service is not running, start it from its own window:</p>
+  <pre><code>./run.sh serve                   # prints the URL to open</code></pre>
+
+  <h3>Resetting for another run</h3>
+  <pre><code>cd advisor-tool
+./clean.sh --dry-run             # show what would be removed
+./clean.sh                       # remove it, keeping brief, data and node_modules</code></pre>
 
   <div class="box">
-    <p><strong>Marking a run.</strong> There is a <code>judge</code> skill in this repo
-    that assesses a completed run — it carries the answer key, the reference figures, and
-    the traps that have separated the field every time. Its first rule is worth knowing
-    even if you mark by hand: <strong>never mark from a model's own summary.</strong> Every
-    run so far has produced at least one summary that misstates its own work.</p>
+    <p><strong>Marking a run.</strong> There is a <code>judge</code> skill in this repo that
+    assesses a completed run — it carries the answer key, the reference figures, and the
+    traps that have separated the field every time. Its first rule is worth knowing even if
+    you mark by hand: <strong>never mark from a model's own summary.</strong> Every run so
+    far has produced at least one summary that misstates its own work.</p>
   </div>
 
 </main>
