@@ -1,13 +1,13 @@
 ---
 name: judge
-description: Assess model submissions in a sprint folder (advisor-tool/, timed-sprint/, allocation-sprint/, …) against that exercise's FACILITATOR.md answer key. Use when asked to judge, mark, assess, score, review or compare the results of a model run in this project, or to check what each model built. Verifies every claim against the running service and the source data rather than trusting a model's own summary.
+description: Assess model submissions in a sprint folder (advisor-tool/, asset-allocation-tool-build/, …) against the answer key carried in this skill. Use when asked to judge, mark, assess, score, review or compare the results of a model run in this project, or to check what each model built. Verifies every claim against the running service and the source data rather than trusting a model's own summary.
 ---
 
 # Judging a model run
 
 Each sprint folder holds one exercise: an identical `BRIEF.md` and `data/` given to
-several models in isolated workspaces, plus a `FACILITATOR.md` one level up carrying
-the answer key. Your job is to say what each model actually produced and how well.
+several models in isolated workspaces. Your job is to say what each model actually
+produced and how well. The answer key is below.
 
 ## The first rule
 
@@ -25,10 +25,9 @@ interesting content — then verify every number and every feature independently
 
 ## Procedure
 
-**1. Read the answer key.** `FACILITATOR.md` in the sprint folder states what a strong
-submission contains. Mark against that, not against feature count. It is written as a
-hypothesis: **a model doing something better that the key did not anticipate is the most
-valuable result available**, not a miss.
+**1. Mark against the answer key, not against feature count.** It is a hypothesis, not a
+rubric: **a model doing something better than the key anticipated is the most valuable
+result available**, not a miss.
 
 **2. Timing.** Prefer each model's self-reported `date +%s` readings in its summary when
 the brief asked for them; fall back to file mtimes only when it did not.
@@ -57,6 +56,32 @@ anything back.
 
 **7. Rank, and be explicit about what each model owns.** The top two are usually close
 and win on different criteria — say which, rather than flattening it to an order.
+
+## The answer key — `advisor-tool/`
+
+The advisor's real job with this book is to answer two questions: **what is this costing,
+and is it working?** A strong tool answers both in a form that can be turned around and
+shown to a client.
+
+1. **Cost in money, not basis points.** "0.326%" means nothing to a client; **$7,831 a
+   year on $2.4m** is the same fact in a form that lands. A tool showing only a percentage
+   has not answered the question.
+2. **"Is it working" resolved into a comparison.** A return figure alone has no referent —
+   but only if the comparison produces an answer. Nine thousand random portfolios on a
+   scatter plot is a construction tool, not something you show a client.
+3. **Honest about the period covered.** Every performance figure is about to be repeated
+   out loud.
+4. **A view.** "Manage better" implies doing something; a tool that only displays leaves
+   the advisor where they started.
+
+**The chain that separates the field is fees → savings → cost of switching.** A weak
+submission builds those as three unrelated panels; a strong one connects them.
+
+**The tension planted in the cost basis:** the cheap win and the right win are different
+trades. JCPB is the dearest bond fund on the shelf and sits on a **−$22,000 loss**, so
+swapping it to JAGG saves **$893/yr** and harvests a deduction — free. But the bigger
+problem is the 35% in covered-call income sold to someone fifteen years from drawing, and
+trimming JEPQ realises **+$120,000** of gain. Watch which tools show both.
 
 ## The standing traps
 

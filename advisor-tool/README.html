@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Advisor Tool Exercise — Read Me</title>
+<style>
+  :root{
+    --paper:#f7f8f9; --card:#fff; --ink:#151b22; --ink-2:#4d5865; --ink-3:#7b8593;
+    --line:#dfe4ea; --accent:#33507e; --code-bg:#eef1f5;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{--paper:#0f1318;--card:#171d24;--ink:#e8edf3;--ink-2:#a9b4c1;--ink-3:#7d8895;
+          --line:#2b343e;--accent:#8fb0e0;--code-bg:#1f2831;}
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);
+       font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+  main{max-width:760px;margin:0 auto;padding:52px 24px 80px}
+  h1{font-size:2rem;line-height:1.15;letter-spacing:-.02em;margin:0 0 10px}
+  .sub{color:var(--ink-2);font-size:1.08rem;margin:0 0 38px;max-width:58ch}
+  h2{font-size:1.18rem;letter-spacing:-.01em;margin:38px 0 12px;padding-top:20px;border-top:1px solid var(--line)}
+  h2:first-of-type{border-top:0;padding-top:0}
+  p,li{color:var(--ink-2);max-width:66ch}
+  strong{color:var(--ink)}
+  ul,ol{padding-left:22px}
+  li{margin:7px 0}
+  code{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:13.5px;
+       background:var(--code-bg);padding:2px 6px;border-radius:3px;color:var(--ink)}
+  pre{background:var(--card);border:1px solid var(--line);border-radius:5px;
+      padding:15px 18px;overflow-x:auto;margin:12px 0}
+  pre code{background:none;padding:0;font-size:13px;line-height:1.7}
+  table{border-collapse:collapse;width:100%;margin:12px 0;font-size:14.5px}
+  th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line)}
+  th{color:var(--ink-3);font-size:12px;text-transform:uppercase;letter-spacing:.07em;font-weight:600}
+  td code{font-size:13px}
+  .box{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);
+       border-radius:5px;padding:16px 20px;margin:16px 0}
+  .box p{margin:0}
+  .box p+p{margin-top:9px}
+</style>
+</head>
+<body>
+<main>
+
+  <h1>The advisor tool exercise</h1>
+  <p class="sub">Four AI models get the same brief, the same client, and ten minutes each.
+  You compare what they built.</p>
+
+  <h2>What this is</h2>
+  <p>Each of the four folders here is a sealed copy of one exercise. Inside each is a
+  brief, a fund shelf, and a real client portfolio. The brief gives one goal —
+  <strong>help an advisor manage this client's portfolio better</strong> — followed by ten
+  things a workshop of advisers asked for. <strong>Ten minutes is not enough for ten
+  things, and the brief says so.</strong></p>
+  <p>So the exercise is not "who built the most". It is <strong>what each model chose to
+  build, what it refused, and whether the numbers hold up</strong> when you check them.</p>
+
+  <h2>The client</h2>
+  <table>
+    <tr><th>Account</th><td>$2.4m, taxable</td></tr>
+    <tr><th>Holdings</th><td>9 funds, from a fixed shelf of 16</td></tr>
+    <tr><th>Unrealised gain</th><td>$312,000 — so selling has a tax cost</td></tr>
+    <tr><th>Horizon</th><td>~15 years from drawing on the money</td></tr>
+  </table>
+  <p>Everything the models show must come from the three files in <code>data/</code>.
+  They are told not to invent inputs, and to label any assumption on screen.</p>
+
+  <h2>How to run it</h2>
+  <p>Check the workspaces are provisioned — this changes nothing, it only verifies:</p>
+  <pre><code>cd advisor-tool
+./preinstall.sh --check</code></pre>
+  <p>Then start each model's tool. They can all run at once, so you can flip between tabs:</p>
+  <pre><code>cd claude-opus &amp;&amp; ./run.sh serve     # prints its URL
+cd glm         &amp;&amp; ./run.sh serve
+cd inkling     &amp;&amp; ./run.sh serve
+cd kimi3       &amp;&amp; ./run.sh serve</code></pre>
+  <p>Each workspace has its own port range: claude-opus 7600, glm 7900, inkling 7800,
+  kimi3 7700. Each also leaves a <code>SUMMARY.html</code> saying what it built and why,
+  with a link straight through to its running page — that is the quickest way in.</p>
+
+  <div class="box">
+    <p><strong>Two practical things.</strong> Plug the laptop in, or run
+    <code>caffeinate</code> — a previous session lost 37 minutes to the machine sleeping
+    mid-build. And avoid ports 5000 and 7000; macOS AirPlay holds both.</p>
+  </div>
+
+  <h2>What to look for</h2>
+  <ul>
+    <li><strong>Would you let an advisor take this into a client meeting on Monday?</strong>
+      That is the whole test.</li>
+    <li><strong>What did it refuse to build, and do you agree?</strong> Declining an ask can
+      be the better answer — three of four refused to compare against an invented
+      alternative, and were right to.</li>
+    <li><strong>What is this client paying?</strong> Some tools tell you in dollars, some
+      only in percentages. Only one of those answers the question a client asks.</li>
+    <li><strong>Pick the most impressive number on any screen and ask where it came
+      from.</strong> Not all of them can tell you.</li>
+  </ul>
+
+  <h2>Running it again</h2>
+  <p>Only the setup is kept here — the brief, the data, and the installed toolchain. What
+  the models produced has been cleared, so the folders are ready for a fresh run. Give each
+  model one workspace and nothing else; the brief tells it that its folder is the entire
+  world.</p>
+
+  <div class="box">
+    <p><strong>Marking a run.</strong> There is a <code>judge</code> skill in this repo
+    that assesses a completed run — it carries the answer key, the reference figures, and
+    the traps that have separated the field every time. Its first rule is worth knowing
+    even if you mark by hand: <strong>never mark from a model's own summary.</strong> Every
+    run so far has produced at least one summary that misstates its own work.</p>
+  </div>
+
+</main>
+</body>
+</html>
