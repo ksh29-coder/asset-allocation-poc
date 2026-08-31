@@ -36,7 +36,7 @@ Any language, framework, and architecture you judge appropriate.
 
 ## Port assignment
 
-This application must bind only to ports in the range **4300–4309** (inclusive).
+This application must bind only to ports in the range **4400–4409** (inclusive).
 Several applications built from this brief run simultaneously on one machine, so
 any port outside this range risks a collision. If you need more than one port —
 say an API server and a frontend dev server — use additional ports from within

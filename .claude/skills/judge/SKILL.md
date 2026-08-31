@@ -163,3 +163,39 @@ When the audience is the AWM operating committee rather than the user, offer an 
 and pitch it at them: money not basis points, no engineering vocabulary, and the
 technical section framed by the fact that **the brief told every model nobody would read
 its code** — so it measures what each does when it believes no one is looking.
+
+### Chart the comparison
+
+A prose ranking plus a pass/fail table makes the reader assemble the finding themselves.
+Put **one** chart near the top of the artifact that carries the verdict at a glance, and
+load the `dataviz` skill before writing it.
+
+**The chart must not make coverage look like the score.** A plain "features built" bar
+chart says the most prolific model won, which is the opposite of what the brief rewards.
+Encode correctness *inside* the bar instead:
+
+> Stacked horizontal bar per model across the N asks — **built and the figures hold** /
+> **built but wrong on screen** / **not built** — ordered to match your ranking. The
+> length to the end of the first segment is the real score. In the `advisor-tool/` run
+> this put the most complete submission (10 of 10) visibly alongside the only red
+> segment in the field, which is the entire finding in one row.
+
+Keep the required self-check **out of the bar** and in its own labelled row beneath it —
+it is not one of the N asks, and it is where the field splits hardest. `REAL` vs
+`CANNOT FAIL` against each model name is usually the most damning line on the page.
+
+Other aspects worth a second chart only if they actually separate the field — most runs
+need just the one:
+
+| Aspect | Form | Watch for |
+|---|---|---|
+| Headline figure vs truth | Paired bars, truth as a reference line | Only interesting where a model is *wrong*; identical bars are noise |
+| Time used of the budget | Simple bar | Fast-and-thin vs slow-and-thorough is real signal; label the budget |
+| Where the same number diverges | Dot plot on one axis | Never a dual axis; index to the honest figure |
+
+**Colour.** These are status states (good / wrong / absent), not categorical series, so
+use a status palette, direct-label every segment, and never rely on colour alone. Run
+`scripts/validate_palette.js` rather than eyeballing it — the instinctive green/red pair
+fails at ΔE 6.9 under protanopia. Shifting the "verified" fill to a teal (`#0D6E7A` on
+white, `#52B8C0` on dark) reaches 14.0 and passes. Give the dark theme its own validated
+steps, not an inversion, and look at the rendered page in both themes before publishing.
