@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Asset Allocation Platform Exercise — Read Me</title>
+<style>
+  :root{
+    --paper:#f7f8f9; --card:#fff; --ink:#151b22; --ink-2:#4d5865; --ink-3:#7b8593;
+    --line:#dfe4ea; --accent:#33507e; --code-bg:#eef1f5; --warn:#8a5a00; --warn-bg:#fdf3e0;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{--paper:#0f1318;--card:#171d24;--ink:#e8edf3;--ink-2:#a9b4c1;--ink-3:#7d8895;
+          --line:#2b343e;--accent:#8fb0e0;--code-bg:#1f2831;--warn:#e0b562;--warn-bg:#2a2113;}
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);
+       font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+  main{max-width:780px;margin:0 auto;padding:52px 24px 80px}
+  h1{font-size:2rem;line-height:1.15;letter-spacing:-.02em;margin:0 0 10px}
+  .sub{color:var(--ink-2);font-size:1.08rem;margin:0 0 36px;max-width:60ch}
+  h2{font-size:1.2rem;letter-spacing:-.01em;margin:40px 0 12px;padding-top:22px;border-top:1px solid var(--line)}
+  h2:first-of-type{border-top:0;padding-top:0}
+  p,li{color:var(--ink-2);max-width:68ch}
+  strong{color:var(--ink)}
+  ul,ol{padding-left:22px} li{margin:7px 0}
+  code{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:13.5px;
+       background:var(--code-bg);padding:2px 6px;border-radius:3px;color:var(--ink)}
+  table{border-collapse:collapse;width:100%;margin:12px 0;font-size:14px}
+  th,td{text-align:left;padding:8px 11px;border-bottom:1px solid var(--line)}
+  th{color:var(--ink-3);font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+  td.n{text-align:right;font-variant-numeric:tabular-nums;font-family:ui-monospace,Menlo,monospace;font-size:13px}
+  td.t{font-family:ui-monospace,Menlo,monospace;font-size:13px;color:var(--ink)}
+  .box{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);
+       border-radius:5px;padding:16px 20px;margin:16px 0}
+  .box p{margin:0} .box p+p{margin-top:9px}
+  .box.warn{border-left-color:var(--warn);background:var(--warn-bg)}
+  .brief{background:var(--card);border:1px solid var(--line);border-radius:5px;padding:22px 26px;margin:16px 0}
+  .brief .goal{font-size:1.1rem;color:var(--ink);line-height:1.5;margin:0 0 6px}
+  .brief .lede{color:var(--ink-2);font-size:16px;line-height:1.6;margin:0 0 18px}
+  .brief .then{color:var(--ink-3);font-size:15px;margin:0 0 18px}
+  .brief ol{margin:0;padding-left:24px} .brief li{margin:9px 0}
+  .rules{list-style:none;padding:0;margin:14px 0 0}
+  .rules li{margin:10px 0;padding-left:19px;position:relative}
+  .rules li::before{content:"—";position:absolute;left:0;color:var(--ink-3)}
+</style>
+</head>
+<body>
+<main>
+
+  <h1>The asset allocation platform exercise</h1>
+  <p class="sub">Four AI models get the same fund shelf, the same price history, and a brief
+  that deliberately refuses to say what to build. You compare what they made of it.</p>
+
+  <p>Each of the four folders here is a sealed copy of one exercise. A model is given one
+  folder and nothing else. Every model starts from an empty page and a list of sixteen funds,
+  and the first thing it has to decide is what an allocation tool is for.</p>
+
+  <h2>1 · The data they are given</h2>
+  <p>Two files, and nothing else. No internet at runtime, no market feed, no benchmark.</p>
+
+  <table>
+    <tr><th>File</th><th>What is in it</th></tr>
+    <tr><td class="t">products.csv</td><td><strong>16 real JPMorgan ETFs</strong> — the entire investable universe, with asset class, category, region and published expense ratio</td></tr>
+    <tr><td class="t">prices.csv</td><td><strong>17,604 daily closing prices</strong>, Aug 2021 to Aug 2026, adjusted for distributions — so returns are total-return, with income already inside them</td></tr>
+  </table>
+
+  <p>The shelf spans five asset classes. Fees run from <strong>0.07% to 0.50%</strong>, a
+  seven-fold spread, so what a portfolio costs is a real design decision rather than a
+  footnote.</p>
+  <table>
+    <tr><th>Asset class</th><th>Funds</th><th>Fee range</th><th>Tickers</th></tr>
+    <tr><td>Equity</td><td class="n">6</td><td class="n">0.24–0.47%</td><td class="t">JGRO JAVA JMEE JIRE JGLO JEMA</td></tr>
+    <tr><td>Fixed income</td><td class="n">6</td><td class="n">0.07–0.39%</td><td class="t">JPST JMST JAGG JCPB JBND JPIE</td></tr>
+    <tr><td>Equity income</td><td class="n">2</td><td class="n">0.35%</td><td class="t">JEPI JEPQ</td></tr>
+    <tr><td>Real assets</td><td class="n">1</td><td class="n">0.11%</td><td class="t">BBRE</td></tr>
+    <tr><td>Alternatives</td><td class="n">1</td><td class="n">0.50%</td><td class="t">HELO</td></tr>
+  </table>
+
+  <p>The funds do not all have the same history: seven go back to the start of the price file,
+  nine launched later, and three of those only in 2023. One fund stops six weeks before the
+  rest. The data notes spell this out for the models.</p>
+
+  <p>Deliberately absent: no benchmark, no risk-free rate, no tax rate, no account size. Any
+  tool showing a Sharpe ratio or a dollar balance is showing you <strong>its own
+  assumption</strong>, which is fine — as long as the screen says so.</p>
+
+  <h2>2 · What we ask the models to do</h2>
+
+  <div class="brief">
+    <p class="goal">Build a portfolio management application for
+    <strong>building and monitoring client asset allocations</strong> from this fund shelf.</p>
+    <p class="lede">The brief is deliberately open. We hand over no feature list — each model
+    has to work out what a professional allocation tool should do for an advisor, decide which
+    features matter most, and build those well.</p>
+
+    <p style="color:var(--ink);margin:0 0 4px"><strong>Four things are required.</strong></p>
+    <p class="then">Everything else — which features, which language, which architecture — is
+    the model's own call.</p>
+    <ol>
+      <li>A <strong>complete working web application</strong>, interface and server, that an
+        advisor could use in a browser.</li>
+      <li>Built <strong>entirely on the provided data</strong>, working offline once
+        installed.</li>
+      <li><strong>Tested</strong> — a test suite the model would stand behind, which fails
+        loudly rather than quietly.</li>
+      <li>A <strong><code>SUMMARY.md</code></strong> for a senior non-technical reader: what
+        it built, why each feature helps an advisor, what it left out, and what it would do
+        next.</li>
+    </ol>
+  </div>
+
+  <p>Three conditions shape the rest:</p>
+  <ul class="rules">
+    <li><strong>Depth beats coverage.</strong> The brief says so in as many words — a few
+      features built well beat many built shallowly.</li>
+    <li><strong>Three commands, and they must work for a stranger.</strong>
+      <code>setup</code>, <code>serve</code>, <code>test</code> — nothing else needs to be
+      known about how a build works inside.</li>
+    <li><strong>Handle the real data conditions.</strong> The brief calls this "a professional
+      tool, not a happy-path demo," and points straight at the short fund histories.</li>
+  </ul>
+
+  <p><strong>There is no time limit.</strong> The exercise is open-ended, so a thin result has
+  no excuse behind it.</p>
+
+  <h2>3 · What we expect from the results</h2>
+  <p>Not feature count. A model that builds four things it would stake its name on beats one
+  that builds nine it would not — and since the brief told them so, a sprawling shallow build
+  is a failure to follow instructions as well as a weak tool.</p>
+
+  <div class="box">
+    <p><strong>Never judge from a model's own <code>SUMMARY.md</code>.</strong> A summary is
+    what the model believes it built, which is not always what it built — the two can diverge
+    without the model noticing. Read the summaries for reasoning, which is the most
+    interesting content. Then check every number against the running application.</p>
+  </div>
+
+  <p>Six questions to put to each build:</p>
+  <ol>
+    <li><strong>Would you let an advisor build a client portfolio in this on Monday?</strong>
+      That is the whole test, and a non-engineer is better placed to answer it than an
+      engineer.</li>
+    <li><strong>Does every figure say what period it covers?</strong> Given these ragged
+      histories, a performance number without a stated window is probably wrong. Check which
+      window the tool chose, whether it says so, and whether it is the same window
+      everywhere.</li>
+    <li><strong>What does the portfolio cost, in money?</strong> Fees span sevenfold here. A
+      tool answering only in percentages has not answered the question a client asks.</li>
+    <li><strong>Does it take a view, or only display?</strong> "Building and monitoring"
+      implies doing something. A tool that draws charts and leaves every decision to the
+      advisor has moved the work, not reduced it.</li>
+    <li><strong>Does <code>./run.sh test</code> actually fail?</strong> Run it, break
+      something, run it again. A suite that reports success over a broken application makes
+      every other claim unverifiable.</li>
+    <li><strong>What did it refuse to build, and do you agree?</strong> Declining is often the
+      better answer, and the reasoning behind a refusal tells you how well the model
+      understands the problem.</li>
+  </ol>
+
+  <p>Two checks worth doing by hand:</p>
+  <ul class="rules">
+    <li><strong>Pick the most impressive number on any screen and ask where it came
+      from.</strong> Not all of them can tell you.</li>
+    <li><strong>Put 100% into a fund that launched in 2023</strong> — JGLO, HELO or JBND — and
+      see what the tool reports over a five-year period. Anything returning a confident
+      five-year figure for a fund that is two years old is telling you something untrue, and
+      it will be telling you the same untruth everywhere else.</li>
+  </ul>
+
+  <div class="box">
+    <p><strong>Marking a run.</strong> There is a <code>judge</code> skill in this repo that
+    assesses a completed run. It verifies every claim against the running service and the
+    source data rather than against the model's own summary.</p>
+  </div>
+
+</main>
+</body>
+</html>
